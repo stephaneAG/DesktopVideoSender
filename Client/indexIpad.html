@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" /> 
+	<script src="jquery.js" type="text/javascript"></script>
+	
+	<style type="text/css">
+		
+		*{
+			margin: 0 0 0 0;
+			padding: 0 0 0 0;
+		}
+		
+		body{
+			height: 100%;
+			width: 100%;
+			position: relative;
+			overflow: hidden;
+		}
+		
+		img.streamOutput{
+			height: 100%;
+		}
+		
+		
+	</style>
+	
+	<script type="text/javascript">
+	
+		$(function(){
+			
+			var ws = null; //init de WebSocket var
+			//var host = "127.0.0.1"; when runnig on localhost
+			var host = "192.168.1.7"; // when accessed throught the simple MacOS Apache server (Sites/../index.html) > should reflect the coputer's current ip adress (..)
+			var port = 8080;
+			var socket = "p5websocket";
+			
+			console.log("trying to open the websocket");
+			var _socket = (undefined==socket)?" ":"/"+socket;
+			ws = new WebSocket("ws://"+host+":"+port+_socket);
+			
+			//when the connection is open, we send some daata to the server
+			ws.onopen = function(){
+				console.log('web socket opened');
+				ws.send('ping'); // send 'ping' msg to the server
+			};
+			
+			//if socket closes
+			ws.onclose = function(e){
+				console.log('web socket did close' + e);
+			};
+			
+			//if an error happens
+			ws.onerror = function(error){
+				console.log('web socket error:' + error);
+			};
+			
+			//if an incoming message is coming from server
+			ws.onmessage = function(e){
+				console.log('web socket received a message form server');
+				document['target'].src = e.data; // update the image
+			};
+			
+			
+			
+		});
+	
+	</script>
+	
+	
+</head>
+
+<body>
+	
+	<div id="test-target">
+		<img class="streamOutput" src="http://www.stephaneadamgarnier.com/JavascriptDev/Portfolio/imgs/turingMachine.png" name="target" />
+	</div>
+	<div id="log">
+	
+	</div>
+	
+</body>
+
+</html>
