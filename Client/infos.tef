@@ -1,0 +1,17 @@
+### Stream Indexes URLs ###
+
+URLs of the Clients indexes for the Processing App VideoDesktopSender:
+
+on MacbookPro > Server( 192.168.1.7 ):
+file:///Users/stephaneadamgarnier/processingDev/SocketsInterfacing/DesktopSender/baseWebSocketClient.html (works with websockets & localhost)
+http://localhost/~stephaneadamgarnier/baseDesktopVideoWebSocketClient/ ( works with websockets and localhost, but this time shared trough the local network using the built-in Web(Apache?) server)
+
+on iMac > Client:
+http://192.168.1.7/~stephaneadamgarnier/baseDesktopVideoWebSocketClient/ (works with websockets , this time through the LAN. Note: could be accessed remotely if 'piped' via a VPN for ex, or with re-routing router rules (..) )
+
+on iMac > Server ( 192.168.1.10 ):
+file:///Users/stephanegarnier/Sites/DesktopVideoSenderPackage/DesktopSender/baseWebSocketClient.html
+http://192.168.1.10/~stephanegarnier/DesktopVideoSenderPackage/DesktopClient/
+
+on MacbookPro > Client:
+http://192.168.1.10/~stephanegarnier/DesktopVideoSenderPackage/DesktopClient/
